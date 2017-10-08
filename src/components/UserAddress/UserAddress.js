@@ -1,27 +1,24 @@
 import React from 'react';
-import { withAddressData } from '../../hocs/withAddressData';
+import { withRemoteData } from '../../hocs/withRemoteData';
+import { fakeResponseAddress } from '../../utils/fakeResponse';
 
-export function UserAddress({ loading, users }) {
+export function UserAddress({ users }) {
   return(
     <div>
       <h1>User + Address</h1>
-      {loading && <h1>Loading...</h1>}
-      {!!users.length &&
-        <div>
-          <pre>
-            {JSON.stringify(users, null, 4)}
-          </pre>
-        </div>
-      }
+      <div>
+        <pre>
+          {JSON.stringify(users, null, 4)}
+        </pre>
+      </div>
     </div>
   );
 }
 
 UserAddress.defaultProps = {
-  loading: true,
   users: []
 };
 
-const withAddress = withAddressData(UserAddress);
+const withAddress = withRemoteData(UserAddress, fakeResponseAddress);
 
 export default withAddress;

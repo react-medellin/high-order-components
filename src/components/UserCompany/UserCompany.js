@@ -1,27 +1,24 @@
 import React from 'react';
-import { withCompanyData } from '../../hocs/withCompanyData';
+import { withRemoteData } from '../../hocs/withRemoteData';
+import { fakeResponseCompany } from '../../utils/fakeResponse';
 
-export function UserCompany({ loading, users }) {
+export function UserCompany({ users }) {
   return(
     <div>
       <h1>User + Company</h1>
-      {loading && <h1>Loading...</h1>}
-      {!!users.length &&
-        <div>
-          <pre>
-            {JSON.stringify(users, null, 4)}
-          </pre>
-        </div>
-      }
+      <div>
+        <pre>
+          {JSON.stringify(users, null, 4)}
+        </pre>
+      </div>
     </div>
   );
 }
 
 UserCompany.defaultProps = {
-  loading: true,
   users: []
 };
 
-const withCompany = withCompanyData(UserCompany);
+const withCompany = withRemoteData(UserCompany, fakeResponseCompany);
 
 export default withCompany;
