@@ -11,9 +11,6 @@ import { UserAddress } from './components/UserAddress/UserAddress';
 import { UserCompany } from './components/UserCompany/UserCompany';
 
 class App extends Component {
-  componentDidMount() {
-    console.log('foo');
-  }
   render() {
     return (
       <div>
