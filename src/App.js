@@ -9,12 +9,43 @@ import './App.css';
 import { Home } from './components/Home/Home';
 import { UserAddress } from './components/UserAddress/UserAddress';
 import { UserCompany } from './components/UserCompany/UserCompany';
+import { fakeResponseCompany } from './utils/fakeResponse';
+import { fakeResponseAddress } from './utils/fakeResponse';
 
 class App extends Component {
-  componentDidMount() {
-    console.log('foo');
+  constructor() {
+    super();
+
+    this.state = {
+      loadingCompany: true,
+      loadingAddress: true,
+      userCompany: [],
+      userAddress: []
+    };
+  }
+  async componentDidMount() {
+    console.log('Loading companies...');
+    console.log('Loading address...');
+    const company = await fakeResponseCompany();
+    const address = await fakeResponseAddress();
+
+    this.setState(() => {
+      return {
+        loadingAddress: false,
+        loadingCompany: false,
+        userCompany: company,
+        userAddress: address
+      };
+    });
   }
   render() {
+    const {
+      loadingAddress,
+      loadingCompany,
+      userCompany,
+      userAddress
+    } = this.state;
+
     return (
       <div>
         <div className="App">
@@ -34,8 +65,8 @@ class App extends Component {
             <hr />
 
             <Route exact path="/" component={Home} />
-            <Route path="/user-with-address" component={UserAddress} />
-            <Route path="/user-with-company" component={UserCompany} />
+            <Route path="/user-with-address" render={() => <UserAddress loading={loadingAddress} users={userAddress} />} />
+            <Route path="/user-with-company" render={() => <UserCompany loading={loadingCompany} users={userCompany} />} />
           </div>
         </Router>
       </div>
