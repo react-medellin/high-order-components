@@ -7,8 +7,8 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import { Home } from './components/Home/Home';
-import { UserAddress } from './components/UserAddress/UserAddress';
-import { UserCompany } from './components/UserCompany/UserCompany';
+import UserAddress from './components/UserAddress/UserAddress';
+import UserCompany from './components/UserCompany/UserCompany';
 
 class App extends Component {
   render() {

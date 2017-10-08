@@ -2,14 +2,17 @@
 
 React Medellín - Meetup Octubre 2017
 
-## Loading data on each route
+## Using HoCs
 
 ### Pros
-- Making request per route
+- Components are simpler
+- Conditional rendering is handle outside of the main component
+- More _dumb_ components
+- Reusable _loading state_
+- Less local state => Components are easier to test
 
 ### Cons
-- _Duplicated logic_ - see `state.loading`
-- The component does _a lot of things_ - fetch data / conditional render
+- ???
 
 ## Links
 - [React's Official Documentation](https://reactjs.org/docs/higher-order-components.html)
